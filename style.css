@@ -1,12 +1,12 @@
 * {
   background-color: tomato;
-  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 0;
 }
 
-.main-title {
+.title {
   background-color: white;
   border: 2px solid black;
   border-radius: 5px;
@@ -18,10 +18,17 @@
 }
 
 .timer {
-  border: 2px solid white;
   display: flex;
-  flex-direction: column;
-  margin: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  width: 95%;
+}
+
+.subtitle {
+  color: white;
+  font-size: 1.5em;
+  margin-bottom: .5em;
 }
 
 .clockface {
@@ -29,12 +36,39 @@
   border: 2px solid black;
   border-radius: 5px;
   font-size: 2em;
-  margin: 2em;
   padding: 0.5em;
   text-align: center;
-  width: 60%;
+  margin: 0 1em;
+  width: 50%;
 }
 
+.btn {
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: .5em;
+  width: 6.5em;
+}
+
+.interval {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 1.5em;
+  padding: 0.25em;
+  text-align: center;
+  margin: 0 2em;
+  width: 40%;
+}
+
+.start {
+  background-color: lightgreen;
+  padding: .5em;
+}
+
+/**
+  * Footer
+ */
 .footer {
   bottom: 0px;
   height: 30px;

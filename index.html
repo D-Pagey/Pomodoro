@@ -8,24 +8,37 @@
 
     <title>Pomodoro Clock</title>
 
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400">
     <link rel="stylesheet" href="style.css">
 
   </head>
 
   <body>
 
-    <h3 class="main-title">Pomodoro Timer</h3>
+    <!-- Title -->
+    <h3 class="title">Pomodoro Timer</h3>
 
+    <!-- Clockface -->
     <main class="timer">
-      <div class="clockface">00:00</div>
 
+      <h2 class="subtitle">(Main timer)</h2>
+      <p class="clockface">20:00</p>
+      <button type="button" name="interval" class="btn">Increase</button>
+      <button type="button" name="interval" class="btn">Decrease</button>
+
+      <h3 class="subtitle">(Interval timer)</h3>
+      <p class="interval">5:00</p>
+      <button type="button" name="interval" class="btn">Increase</button>
+      <button type="button" name="interval" class="btn">Decrease</button>
+
+      <button type="button" name="button" class="btn start">START</button>
 
     </main>
 
-    <footer class="footer">
+    <!-- Footer -->
+    <!-- <footer class="footer">
       <p>Written and coded by <a href="https://www.freecodecamp.org/d-pagey" target="_blank" class="footer-link">Pagey</a></p>
-    </footer>
+    </footer> -->
 
     <script src="scripts.js"></script>
   </body>
