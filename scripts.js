@@ -85,3 +85,16 @@ btns[4].addEventListener("click", reset);
 5) Once tally = 4 then break timer = 20 mins
 * Break timer to start after main has Finished
 */
+
+// Modal Functionality
+const modalBtn = document.getElementsByClassName('modal-btn');
+const modal = document.getElementsByClassName('modal-about');
+const button = document.getElementsByClassName('modal-cancel');
+
+modalBtn[0].addEventListener('click', function() {
+  modal[0].showModal();
+});
+
+button[0].addEventListener('click', function() {
+  modal[0].close();
+})

@@ -10,10 +10,35 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   </head>
 
   <body>
+
+    <!-- Modal -->
+    <div class="modal-container">
+      <button type="button" name="button" class="modal-btn">
+        <i class="material-icons md-14">info_outline</i></button>
+      <dialog class="modal-about">
+        <button type="button" name="button" class="modal-cancel">
+          <i class="material-icons sm-12">clear</i></button>
+        <h4 class="modal-title">JavaScript Calculator</h4>
+        <p class="modal-text copy">This is an Advanced Front End Developer project
+          from the FreeCodeCamp curriculum. The user stories to be completed are:</p>
+        <ul class="user-stories">
+          <li class="story copy">I can start a 25 minute pomodoro,
+            and the timer will go off once 25 minutes has elapsed.</li>
+          <li class="story copy">I can reset the clock for my next pomodoro.</li>
+          <li class="story copy">I can customize the length of each pomodoro.</li>
+        </ul>
+        <p class="modal-text copy">This was made using: Flexbox, SCSS, and native JS.
+          No CSS or JavaScript frameworks or libraries were used.
+          The code can be seen on
+          <a href="https://github.com/D-Pagey/pomodoro" target="_blank" class="link">
+            Github</a>.</p>
+      </dialog>
+    </div>
 
     <!-- Title -->
     <h3 class="title">Pomodoro Timer</h3>
@@ -41,9 +66,11 @@
     </main>
 
     <!-- Footer -->
-    <!-- <footer class="footer">
-      <p>Written and coded by <a href="https://www.freecodecamp.org/d-pagey" target="_blank" class="footer-link">Pagey</a></p>
-    </footer> -->
+    <div class="footer" id="foot">
+      <p>Written and coded by
+        <a href="https://www.freecodecamp.org/d-pagey" target="_blank" class="freecodecamp footer-link">
+          Pagey</a></p>
+    </div>
 
     <script src="scripts.js"></script>
   </body>
