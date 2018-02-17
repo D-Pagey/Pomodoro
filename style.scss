@@ -106,17 +106,29 @@ $tablet: "(min-width: 750px)";
   border-radius: 5px;
   font-size: 1.5em;
   margin: 1em auto;
+  max-width: 225px;
   padding: 0.5em;
   text-align: center;
   width: 75%;
 }
 
 .timer {
+  border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
+  max-width: 350px;
   width: 95%;
+}
+
+.breakTimer {
+  border: 1px solid white;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 40%;
 }
 
 .subtitle {
@@ -124,6 +136,25 @@ $tablet: "(min-width: 750px)";
   font-size: 1.15em;
   margin: .5em;
 }
+
+.tallyCount {
+  border: 1px solid white;
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+}
+
+.increment-btn {
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 50%;
+  font-size: 2em;
+  font-weight: 600;
+  width: 40px;
+  height: 40px;
+}
+
+
 
 .clockface {
   background-color: white;
@@ -147,13 +178,7 @@ $tablet: "(min-width: 750px)";
   width: 8%;
 }
 
-.btn {
-  background-color: lightgray;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: .5em;
-  width: 6.5em;
-}
+
 
 .start {
   background-color: lightgreen;

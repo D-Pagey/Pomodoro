@@ -23,7 +23,7 @@
       <dialog class="modal-about">
         <button type="button" name="button" class="modal-cancel">
           <i class="material-icons sm-12">clear</i></button>
-        <h4 class="modal-title">JavaScript Calculator</h4>
+        <h4 class="modal-title">Pomodoro Clock</h4>
         <p class="modal-text copy">This is an Advanced Front End Developer project
           from the FreeCodeCamp curriculum. The user stories to be completed are:</p>
         <ul class="user-stories">
@@ -46,18 +46,28 @@
     <!-- Clockface -->
     <main class="timer">
 
-      <h2 class="subtitle">(Main timer)</h2>
+      <div class="breakTimer">
+        <h3 class="subtitle">BREAK</h3>
+        <p class="clockface interval">5:00</p>
+        <button type="button" class="increment-btn">+</button>
+        <button type="button" class="increment-btn">-</button>
+      </div>
+
+      <div class="tallyCount">
+        <h3 class="subtitle">TALLY</h3>
+        <p class="clockface tally">0</p>
+      </div>
+
+
+      <h2 class="subtitle">WORK</h2>
       <p class="clockface">2</p>
-      <button type="button" name="interval" class="btn">Increase</button>
-      <button type="button" name="interval" class="btn">Decrease</button>
+      <button type="button" name="interval" class="increment-btn">+</button>
+      <button type="button" name="interval" class="increment-btn">-</button>
 
-      <h3 class="subtitle">(Interval timer)</h3>
-      <h3 class="subtitle">(Break tally)</h3>
-      <p class="clockface interval">5</p>
-      <p class="clockface tally">0</p>
 
-      <button type="button" name="interval" class="btn">Increase</button>
-      <button type="button" name="interval" class="btn">Decrease</button>
+
+
+
 
       <button type="button" name="button" class="btn reset">RESET</button>
       <button type="button" name="button" class="btn pause">PAUSE</button>
