@@ -6,7 +6,7 @@
   font-size: 14px;
   margin: 0;
   padding: 0; }
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 1020px) {
     * {
       font-size: 16px; } }
 
@@ -96,6 +96,10 @@
   margin: 0 auto;
   max-width: 350px;
   width: 95%; }
+  @media screen and (min-width: 1020px) {
+    .break-and-tally {
+      margin: 1em auto;
+      max-width: 400px; } }
 
 /* BREAK TIMER */
 .breakTimer {
@@ -106,6 +110,9 @@
   max-width: 175px;
   position: relative;
   right: 10px; }
+  @media screen and (min-width: 1020px) {
+    .breakTimer {
+      max-width: 200px; } }
 
 .subtitle {
   color: white;
@@ -165,6 +172,9 @@
   font-size: 2em;
   position: relative;
   top: 7px; }
+  @media screen and (min-width: 1020px) {
+    .tally-count {
+      top: 5px; } }
 
 /* MAIN TIMER */
 .main-timer {
@@ -191,7 +201,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: .5em auto;
-  max-width: 350px;
+  max-width: 275px;
   width: 95%; }
 
 .action-btn {
