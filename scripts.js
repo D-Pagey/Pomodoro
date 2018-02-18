@@ -10,15 +10,18 @@ const breakSecs = document.getElementById('break-secs');
 const mainMins = document.getElementById('main-mins')
 const mainSecs = document.getElementById('main-secs')
 
+const start = document.querySelector('.start');
+const pause = document.querySelector('.pause');
+const reset = document.querySelector('.reset');
+
+
 /**
   * Variables
  */
-const currentTime = new Date();
-const deadline = new Date(currentTime.getTime() + (20 * 60 * 1000));
+let minutes = mainMins.innerHTML;
 
-// let defaultTime = 25;
-// let tallyCount = 0;
-// let intervalID;
+const currentTime = new Date();
+const deadline = new Date(currentTime.getTime() + (minutes * 60 * 1000));
 
 /**
   * Methods
@@ -35,77 +38,20 @@ function timeRemaining(deadline) {
   };
 }
 
-function initClock(deadline) {
+function initClock() {
   let timeInterval = setInterval(function() {
     let x = timeRemaining(deadline);
-    mainMins.innerHTML = x.minutes;
-    mainSecs.innerHTML = x.seconds;
+    mainMins.innerHTML = ('0' + x.minutes).slice(-2);;
+    mainSecs.innerHTML = ('0' + x.seconds).slice(-2);
     if (x.total <= 0) {
       clearInterval(timeInterval);
     }
   }, 1000);
 }
 
-initClock(deadline);
-
-
-
-
-
-// function mainCountdown() {
-//   if (mainCount > 0) {
-//     mainCount -= 1;
-//     clocks[0].innerHTML = mainCount;
-//   } else if (mainCount == 0) {
-//     clearInterval(intervalID);
-//     tally();
-//     console.log('Finished work, now for a break.');
-//     startBreak();
-//   }
-// }
-
-// function breakCountdown() {
-//   if (breakCount > 0) {
-//     breakCount -= 1;
-//     clocks[1].innerHTML = breakCount;
-//   } else if (breakCount == 0) {
-//     clearInterval(intervalID);
-//     console.log('Finished break, now for more work.');
-//     reset();
-//     start();
-//   }
-// }
-
-// function start() {
-//   intervalID = setInterval(function() {
-//     mainCountdown();
-//   }, 1000);
-// }
-//
-// function startBreak() {
-//   intervalID = setInterval(function() {
-//     breakCountdown();
-//   }, 1000);
-// }
-
-// function reset() {
-//   clocks[0].innerHTML = 6;
-//   clocks[1].innerHTML = 5
-//   mainCount = clocks[0].innerHTML;
-//   breakCount = clocks[1].innerHTML;
-// }
-//
-// function tally() {
-//   tallyCount++;
-//   clocks[2].innerHTML = tallyCount;
-// }
-
 /**
   * Events
  */
-// btns[6].addEventListener("click", start);
-// btns[4].addEventListener("click", reset);
-//
 modalBtn[0].addEventListener('click', function() {
   modal[0].showModal();
 });
@@ -114,18 +60,12 @@ cancel[0].addEventListener('click', function() {
   modal[0].close();
 })
 
-/**
-  * Countdown tutorial
- */
-
-
-
+start.addEventListener('click', initClock);
 
 /* COUNTDOWN PLAN
-3) Countdown until current time == targetTime
-4) Basic modal says done
-5) Launch break timer
-6) Increment tally
-7) Modal to say get back to work
-8) If tally == 4, then breaktimer = 20 mins
+*) Basic modal says done
+*) Launch break timer
+*) Increment tally
+*) Modal to say get back to work
+*) If tally == 4, then breaktimer = 20 mins
 */
