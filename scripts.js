@@ -7,21 +7,20 @@ const cancel = document.getElementsByClassName('modal-cancel');
 
 const breakMins = document.getElementById('break-mins');
 const breakSecs = document.getElementById('break-secs');
-const mainMins = document.getElementById('main-mins')
-const mainSecs = document.getElementById('main-secs')
+const mainMins = document.getElementById('main-mins');
+const mainSecs = document.getElementById('main-secs');
 
 const start = document.querySelector('.start');
 const pause = document.querySelector('.pause');
 const reset = document.querySelector('.reset');
 
+const amendBtns = document.querySelectorAll('.increment-btn');
 
 /**
   * Variables
  */
-let minutes = mainMins.innerHTML;
-
-const currentTime = new Date();
-const deadline = new Date(currentTime.getTime() + (minutes * 60 * 1000));
+let minutes = '';
+let deadline = '';
 
 /**
   * Methods
@@ -39,6 +38,9 @@ function timeRemaining(deadline) {
 }
 
 function initClock() {
+  const currentTime = new Date();
+  minutes = mainMins.innerHTML;
+  deadline = new Date(currentTime.getTime() + (minutes * 60 * 1000));
   let timeInterval = setInterval(function() {
     let x = timeRemaining(deadline);
     mainMins.innerHTML = ('0' + x.minutes).slice(-2);;
@@ -47,6 +49,14 @@ function initClock() {
       clearInterval(timeInterval);
     }
   }, 1000);
+}
+
+function increment(element) {
+  element.innerHTML = parseInt(element.innerHTML) + 1;
+}
+
+function decrement(element) {
+  element.innerHTML = parseInt(element.innerHTML) - 1;
 }
 
 /**
@@ -58,7 +68,23 @@ modalBtn[0].addEventListener('click', function() {
 
 cancel[0].addEventListener('click', function() {
   modal[0].close();
-})
+});
+
+amendBtns[0].addEventListener('click', function() {
+  increment(breakMins);
+});
+
+amendBtns[1].addEventListener('click', function() {
+  decrement(breakMins);
+});
+
+amendBtns[2].addEventListener('click', function() {
+  increment(mainMins);
+});
+
+amendBtns[3].addEventListener('click', function() {
+  decrement(mainMins);
+});
 
 start.addEventListener('click', initClock);
 
