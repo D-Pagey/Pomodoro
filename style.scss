@@ -1,7 +1,7 @@
-/* Variables */
+/* VARIABLES */
 $tablet: "(min-width: 750px)";
 
-/* Mixins */
+/* MIXINS */
 @mixin mediaQueries($arg) {
   @media screen and #{$arg} {
     @content;
@@ -19,7 +19,7 @@ $tablet: "(min-width: 750px)";
   }
 }
 
-/* Modal */
+/* MODAL */
 .modal-container {
   display: inline-flex;
   justify-content: flex-end;
@@ -99,7 +99,7 @@ $tablet: "(min-width: 750px)";
   opacity: .85;
 }
 
-/* Main Content */
+/* CONTENT OUTLINE */
 .title {
   background-color: white;
   border: 2px solid black;
@@ -116,69 +116,83 @@ $tablet: "(min-width: 750px)";
   border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   margin: 0 auto;
   max-width: 350px;
   width: 95%;
 }
 
+/* BREAK TIMER */
 .breakTimer {
-  border: 1px solid white;
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 1em;
   width: 40%;
 }
 
 .subtitle {
   color: white;
-  font-size: 1.15em;
+  font-size: 1.25em;
   margin: .5em;
 }
 
-.tallyCount {
-  border: 1px solid white;
-  display: flex;
-  flex-wrap: wrap;
-  width: 40%;
-}
-
-.increment-btn {
-  background-color: lightgray;
-  border: 1px solid black;
-  border-radius: 50%;
-  font-size: 2em;
-  font-weight: 600;
-  width: 40px;
-  height: 40px;
-}
-
-
-
-.clockface {
+.break-clockface {
   background-color: white;
   border: 2px solid black;
-  border-radius: 5px;
-  font-size: 2em;
+  border-radius: 40px;
+  font-size: 2rem;
   padding: 0.5em;
   text-align: center;
   margin: 0 1em;
   width: 50%;
 }
 
-.interval {
-  font-size: 1.5em;
-  width: 40%;
+.clockface {
+  background-color: inherit;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.increment-btn {
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 40px;
+  font-size: 2em;
+  font-weight: 600;
+  margin: .25em;
+  width: 40px;
+}
+
+/* TALLY COUNTER */
+.tally-container {
+  align-items: center;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100px;
+  width: 100px;
 }
 
 .tally {
-  border-radius: 60px;
-  font-size: 1.5em;
-  width: 8%;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  height: 50px;
+  text-align: center;
+  width: 50px;
 }
 
-
+.tally-count {
+  background-color: inherit;
+  font-size: 2em;
+  position: relative;
+  top: 7px;
+}
 
 .start {
   background-color: lightgreen;
