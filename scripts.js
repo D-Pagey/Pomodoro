@@ -4,75 +4,71 @@
 const modalBtn = document.getElementsByClassName('modal-btn');
 const modal = document.getElementsByClassName('modal-about');
 const cancel = document.getElementsByClassName('modal-cancel');
-const clocks = document.querySelectorAll('.clockface');
-const btns = document.querySelectorAll('.btn');
 
 /**
   * Variables
  */
-let defaultTime = 25;
-let mainCount = clocks[0].innerHTML;
-let breakCount = clocks[1].innerHTML;
-let tallyCount = 0;
-let intervalID;
+// let defaultTime = 25;
+// let tallyCount = 0;
+// let intervalID;
 
  /**
    * Methods
   */
-function mainCountdown() {
-  if (mainCount > 0) {
-    mainCount -= 1;
-    clocks[0].innerHTML = mainCount;
-  } else if (mainCount == 0) {
-    clearInterval(intervalID);
-    tally();
-    console.log('Finished work, now for a break.');
-    startBreak();
-  }
-}
+// function mainCountdown() {
+//   if (mainCount > 0) {
+//     mainCount -= 1;
+//     clocks[0].innerHTML = mainCount;
+//   } else if (mainCount == 0) {
+//     clearInterval(intervalID);
+//     tally();
+//     console.log('Finished work, now for a break.');
+//     startBreak();
+//   }
+// }
 
-function breakCountdown() {
-  if (breakCount > 0) {
-    breakCount -= 1;
-    clocks[1].innerHTML = breakCount;
-  } else if (breakCount == 0) {
-    clearInterval(intervalID);
-    console.log('Finished break, now for more work.');
-    reset();
-    start();
-  }
-}
+// function breakCountdown() {
+//   if (breakCount > 0) {
+//     breakCount -= 1;
+//     clocks[1].innerHTML = breakCount;
+//   } else if (breakCount == 0) {
+//     clearInterval(intervalID);
+//     console.log('Finished break, now for more work.');
+//     reset();
+//     start();
+//   }
+// }
 
-function start() {
-  intervalID = setInterval(function() {
-    mainCountdown();
-  }, 1000);
-}
+// function start() {
+//   intervalID = setInterval(function() {
+//     mainCountdown();
+//   }, 1000);
+// }
+//
+// function startBreak() {
+//   intervalID = setInterval(function() {
+//     breakCountdown();
+//   }, 1000);
+// }
 
-function startBreak() {
-  intervalID = setInterval(function() {
-    breakCountdown();
-  }, 1000);
-}
-
-function reset() {
-  clocks[0].innerHTML = 6;
-  clocks[1].innerHTML = 5
-  mainCount = clocks[0].innerHTML;
-  breakCount = clocks[1].innerHTML;
-}
-
-function tally() {
-  tallyCount++;
-  clocks[2].innerHTML = tallyCount;
-}
+// function reset() {
+//   clocks[0].innerHTML = 6;
+//   clocks[1].innerHTML = 5
+//   mainCount = clocks[0].innerHTML;
+//   breakCount = clocks[1].innerHTML;
+// }
+//
+// function tally() {
+//   tallyCount++;
+//   clocks[2].innerHTML = tallyCount;
+// }
 
 /**
   * Events
  */
-btns[6].addEventListener("click", start);
-btns[4].addEventListener("click", reset);
-
+// btns[6].addEventListener("click", start);
+// btns[4].addEventListener("click", reset);
+//
 modalBtn[0].addEventListener('click', function() {
   modal[0].showModal();
 });

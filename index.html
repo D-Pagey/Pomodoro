@@ -44,7 +44,7 @@
     <h3 class="title">Pomodoro Timer</h3>
 
     <!-- Clockface -->
-    <main class="timer">
+    <section class="break-and-tally">
 
       <div class="breakTimer">
         <h3 class="subtitle">BREAK</h3>
@@ -61,19 +61,24 @@
         <p class="tally"><span class="tally-count">0</span></p>
       </div>
 
-<!--
+    </section>
+
+    <main class="main-timer">
       <h2 class="subtitle">WORK</h2>
-      <p class="clockface">
-        <span id="main-mins" class="clock">25</span>:
-        <span id="main-secs" class="clock">00</span></p>
+      <p class="main-clockface">
+        <span id="main-mins" class="clockface">25</span>
+        <span class="clockface">:</span>
+        <span id="main-secs" class="clockface">00</span></p>
       <button type="button" name="interval" class="increment-btn">+</button>
       <button type="button" name="interval" class="increment-btn">-</button>
-
-      <button type="button" name="button" class="btn reset">RESET</button>
-      <button type="button" name="button" class="btn pause">PAUSE</button>
-      <button type="button" name="button" class="btn start">START</button> -->
-
     </main>
+
+    <div class="action-btn-container">
+      <button type="button" name="button" class="action-btn start">START</button>
+      <button type="button" name="button" class="action-btn pause">PAUSE</button>
+      <button type="button" name="button" class="action-btn reset">RESET</button>
+    </div>
+
 
     <!-- Footer -->
     <div class="footer" id="foot">
