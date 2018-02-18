@@ -5,16 +5,53 @@ const modalBtn = document.getElementsByClassName('modal-btn');
 const modal = document.getElementsByClassName('modal-about');
 const cancel = document.getElementsByClassName('modal-cancel');
 
+const breakMins = document.getElementById('break-mins');
+const breakSecs = document.getElementById('break-secs');
+const mainMins = document.getElementById('main-mins')
+const mainSecs = document.getElementById('main-secs')
+
 /**
   * Variables
  */
+const currentTime = new Date();
+const deadline = new Date(currentTime.getTime() + (20 * 60 * 1000));
+
 // let defaultTime = 25;
 // let tallyCount = 0;
 // let intervalID;
 
- /**
-   * Methods
-  */
+/**
+  * Methods
+*/
+function timeRemaining(deadline) {
+  const t = Date.parse(deadline) - Date.parse(new Date());
+  const seconds = Math.floor( (t/1000) % 60 );
+  const minutes = Math.floor( (t/1000/60) % 60 );
+
+  return {
+    'total': t,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function initClock(deadline) {
+  let timeInterval = setInterval(function() {
+    let x = timeRemaining(deadline);
+    mainMins.innerHTML = x.minutes;
+    mainSecs.innerHTML = x.seconds;
+    if (x.total <= 0) {
+      clearInterval(timeInterval);
+    }
+  }, 1000);
+}
+
+initClock(deadline);
+
+
+
+
+
 // function mainCountdown() {
 //   if (mainCount > 0) {
 //     mainCount -= 1;
@@ -80,24 +117,11 @@ cancel[0].addEventListener('click', function() {
 /**
   * Countdown tutorial
  */
-const currentTime = new Date();
-const deadline = new Date(currentTime.getTime() + (20 * 60 * 1000));
 
-function timeRemaining(deadline) {
-  const t = Date.parse(deadline) - Date.parse(new Date());
-  const seconds = Math.floor( (t/1000) % 60 );
-  const minutes = Math.floor( (t/1000/60) % 60 );
 
-  return {
-    'total': t,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
+
 
 /* COUNTDOWN PLAN
-1) Get current time
-2) Add Pomodoro amount to current time, store in variable targetTime
 3) Countdown until current time == targetTime
 4) Basic modal says done
 5) Launch break timer
