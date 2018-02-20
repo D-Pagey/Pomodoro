@@ -94,7 +94,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
-  max-width: 350px;
+  max-width: 375px;
   width: 95%; }
   @media screen and (min-width: 1020px) {
     .break-and-tally {
@@ -107,7 +107,7 @@
   flex-grow: 1;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 175px;
+  max-width: 200px;
   position: relative;
   right: 10px; }
   @media screen and (min-width: 1020px) {
@@ -126,7 +126,7 @@
   font-size: 2rem;
   padding: 0.5em;
   text-align: center;
-  margin: 0 1em;
+  margin: 0 .5em;
   width: 50%; }
 
 .clockface {

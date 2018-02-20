@@ -117,7 +117,7 @@ $laptop: "(min-width: 1020px)";
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
-  max-width: 350px;
+  max-width: 375px;
   width: 95%;
   @include mediaQueries($laptop) {
     margin: 1em auto;
@@ -131,7 +131,7 @@ $laptop: "(min-width: 1020px)";
   flex-grow: 1;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 175px;
+  max-width: 200px;
   position: relative;
   right: 10px;
   @include mediaQueries($laptop) {
@@ -152,7 +152,7 @@ $laptop: "(min-width: 1020px)";
   font-size: 2rem;
   padding: 0.5em;
   text-align: center;
-  margin: 0 1em;
+  margin: 0 .5em;
   width: 50%;
 }
 

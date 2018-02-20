@@ -20,9 +20,11 @@ const amendBtns = document.querySelectorAll('.increment-btn');
 /**
   * Variables
  */
-let minutes = '';
-let deadline = '';
+let mainMinutes = '';
+let mainDeadline = '';
 let timeInterval = '';
+let breakMinutes = '';
+let breakDeadline = '';
 
 /**
   * Methods
@@ -41,16 +43,49 @@ function timeRemaining(deadline) {
 
 function initClock() {
   const currentTime = new Date();
-  minutes = mainMins.innerHTML;
-  deadline = new Date(currentTime.getTime() + (minutes * 60 * 1000));
+  mainMinutes = mainMins.innerHTML;
+  mainDeadline = new Date(currentTime.getTime() + (mainMinutes * 60 * 1000));
   timeInterval = setInterval(function() {
-    let x = timeRemaining(deadline);
+    let x = timeRemaining(mainDeadline);
     mainMins.innerHTML = ('0' + x.minutes).slice(-2);
     mainSecs.innerHTML = ('0' + x.seconds).slice(-2);
     if (x.total <= 0) {
       clearInterval(timeInterval);
+      increment(tally);
+      if (tally.innerHTML % 4 == 0) {
+        breakMins.innerHTML = 20;
+      }
+      alert('Time for a break');
+      initBreak();
     }
   }, 1000);
+}
+
+function initBreak() {
+  const currentTime = new Date();
+  breakMinutes = breakMins.innerHTML;
+  breakDeadline = new Date(currentTime.getTime() + (breakMinutes * 60 * 1000));
+  timeInterval = setInterval(function() {
+    let y = timeRemaining(breakDeadline);
+    breakMins.innerHTML = ('0' + y.minutes).slice(-2);
+    breakSecs.innerHTML = ('0' + y.seconds).slice(-2);
+    if (y.total <= 0) {
+      clearInterval(timeInterval);
+      reset();
+      alert('Time for work');
+      initClock();
+      breakMins.innerHTML = 5;
+    }
+  }, 1000);
+}
+
+function reset() {
+  clearInterval(timeInterval);
+  mainMins.innerHTML = 25;
+  mainSecs.innerHTML = ('0' + '0').slice(-2);
+  breakMins.innerHTML = 5;
+  breakSecs.innerHTML = ('0' + '0').slice(-2);
+  console.log('Reset the clock');
 }
 
 function increment(element) {
@@ -59,13 +94,6 @@ function increment(element) {
 
 function decrement(element) {
   element.innerHTML = parseInt(element.innerHTML) - 1;
-}
-
-function reset() {
-  clearInterval(timeInterval);
-  mainMins.innerHTML = 25;
-  mainSecs.innerHTML = ('0' + '0').slice(-2);
-  console.log('Reset the clock');
 }
 
 /**
@@ -98,11 +126,3 @@ amendBtns[3].addEventListener('click', function() {
 resetBtn.addEventListener('click', reset);
 
 startBtn.addEventListener('click', initClock);
-
-/* COUNTDOWN PLAN
-*) Basic modal says done
-*) Launch break timer
-*) Increment tally
-*) Modal to say get back to work
-*) If tally == 4, then breaktimer = 20 mins
-*/
