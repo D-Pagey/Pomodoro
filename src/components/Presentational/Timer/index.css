@@ -1,0 +1,30 @@
+.clock-container {
+  border: 1px solid blue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.main-clock {
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 2rem;
+  line-height: 4.25rem;
+  margin: 0 60px;
+  padding: .5rem;
+  text-align: center;
+  height: 4.25rem;
+  width: 10rem;
+}
+
+.clock-buttons {
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 50%;
+  height: 40px;
+  font-size: 2em;
+  font-weight: 400;
+  margin: .25em;
+  width: 40px; 
+}
