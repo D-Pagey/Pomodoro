@@ -1,3 +1,13 @@
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 .App {
   display: flex; 
   flex-direction: column;
@@ -5,7 +15,6 @@
 
 .title {
   background-color: white;
-  border: 2px solid black;
   border-radius: 5px;
   font-size: 1.5em;
   margin: .5em auto;
