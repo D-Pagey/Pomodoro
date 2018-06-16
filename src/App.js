@@ -7,15 +7,24 @@ import Actions from './components/Presentational/Actions';
 
 class App extends Component {
   state = {
+    currentTime: 0,
     deadline: 0,
     minutes: 25,
     seconds: 0,
   }
 
   setDeadLine = () => {
+    const currentTime = new Date();
     const deadline = new Date(new Date().getTime() + 
     (this.state.minutes * 60 * 1000));
-    this.setState({ deadline: deadline });
+    const minutesRemaining = (deadline - currentTime) / 1000 / 60;
+    const secondsRemaining = (deadline - currentTime) / 1000;
+    this.setState({ 
+      currentTime: currentTime,
+      deadline: deadline,
+      minutes: minutesRemaining,
+      seconds: secondsRemaining % 60,
+     });
   }
 
   render() {
