@@ -1,0 +1,13 @@
+.action-btns {
+
+}
+
+.start-btn {
+  background-color: rgb(208, 255, 201);
+  border-radius: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: .5em;
+  margin: .25rem 0;
+}
+

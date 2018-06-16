@@ -11,15 +11,16 @@ button {
 .App {
   display: flex; 
   flex-direction: column;
+  align-items: center;
 }
 
 .title {
-  background-color: white;
+  background-color: silver;
   border-radius: 5px;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   margin: .5em auto;
   max-width: 225px;
-  padding: 0.5em;
+  padding: 0.75rem 0.25rem;
   text-align: center;
   width: 75%; 
 }
