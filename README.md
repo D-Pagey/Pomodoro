@@ -1,7 +1,7 @@
 ## Pomodoro Clock -  A Free Code Camp project
 
  **User Stories:**
- - [x] I can start a 25 minute pomodoro, and the timer will go off once 25 minutes has elapsed.
+ - [ ] I can start a 25 minute pomodoro, and the timer will go off once 25 minutes has elapsed.
  - [x] I can reset the clock for my next pomodoro.
  - [x] I can customize the length of each pomodoro.
 
@@ -12,5 +12,7 @@ appropriately using the setInterval function.
 I have fulfilled the user stories however, there are still quite a few things I
 would like to improve on the app. For starters, I would like to make the Pause button
 functional. I would also like a different notification for the end of a timer.
+
+Building a clock in React
 
 You can see this [Pomodoro](https://codepen.io/Pagey/pen/zRWYgw) project on CodePen.

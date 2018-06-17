@@ -10,12 +10,14 @@ class App extends Component {
     currentTime: 0,
     deadline: 0,
     minutes: 25,
-    seconds: 0,
+    seconds: '00',
+    timeIntervalId: 0,
   }
 
   startClock = () => {
     this.setDeadLine();
     const timeInterval = setInterval(this.timeLeft, 1000);
+    this.setState({ timeIntervalId: timeInterval })
   }
 
   setDeadLine = () => {
@@ -30,9 +32,14 @@ class App extends Component {
 
   timeLeft = () => {
     const msLeft = Date.parse(this.state.deadline) - Date.parse(new Date);
+    const minutesLeft = Math.floor(msLeft / 1000 / 60);
+    const secondsLeft = msLeft / 1000 % 60;
+    if (msLeft === 0) {
+      clearInterval(this.state.timeIntervalId);
+    };
     this.setState({
-      minutes: Math.floor(msLeft / 1000 / 60),
-      seconds: msLeft / 1000 % 60,
+      minutes: ('0' + minutesLeft).slice(-2),
+      seconds: ('0' + secondsLeft).slice(-2),
     });
   }
 
@@ -42,6 +49,17 @@ class App extends Component {
 
   decrTime = () => {
     this.setState({ minutes: this.state.minutes - 1 });
+  }
+
+  resetClock = () => {
+    clearInterval(this.state.timeIntervalId);
+    this.setState({
+      currentTime: 0,
+      deadline: 0,
+      minutes: 25,
+      seconds: '00',
+      timeIntervalId: 0,
+    });
   }
 
   render() {
@@ -55,7 +73,8 @@ class App extends Component {
         incTime={this.incTime}
         decrTime={this.decrTime} />
         <Actions 
-        start={this.startClock} />
+        start={this.startClock}
+        reset={this.resetClock} />
       </div>
     );
   }
