@@ -27,12 +27,24 @@ class App extends Component {
      });
   }
 
+  incTime = () => {
+    this.setState({ minutes: this.state.minutes + 1 });
+  }
+
+  decrTime = () => {
+    this.setState({ minutes: this.state.minutes - 1 });
+  }
+
   render() {
     return (
       <div className="App">
         <Modal />
         <h3 className="title">Pomodoro Timer</h3>
-        <Timer minutes={this.state.minutes} seconds={this.state.seconds} />
+        <Timer 
+        minutes={this.state.minutes} 
+        seconds={this.state.seconds} 
+        incTime={this.incTime}
+        decrTime={this.decrTime} />
         <Actions deadline={this.setDeadLine} />
       </div>
     );
