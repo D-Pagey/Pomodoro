@@ -36,6 +36,8 @@ class App extends Component {
     const secondsLeft = msLeft / 1000 % 60;
     if (msLeft === 0) {
       clearInterval(this.state.timeIntervalId);
+      const audio = this.audio;
+      audio.play();
     };
     this.setState({
       minutes: ('0' + minutesLeft).slice(-2),
@@ -72,6 +74,10 @@ class App extends Component {
         seconds={this.state.seconds} 
         incTime={this.incTime}
         decrTime={this.decrTime} />
+        <audio 
+        src='https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_bell_timer_01.mp3' 
+        volume='0.5'
+        ref={node => this.audio = node}/>
         <Actions 
         start={this.startClock}
         reset={this.resetClock} />
@@ -81,3 +87,8 @@ class App extends Component {
 }
 
 export default App;
+
+/** Bugs to fix:
+ * Decrement to -1
+ * Add PropTypes and Default Props
+ */
