@@ -7,23 +7,28 @@ import Actions from './components/Presentational/Actions';
 
 class App extends Component {
   state = {
+    breakLength: 0,
     currentTime: 0,
     deadline: 0,
     minutes: 25,
     seconds: '00',
+    status: 'work',
+    tally: 0,
     timeIntervalId: 0,
+    workLength: 0,
   }
 
   startClock = () => {
-    this.setDeadLine();
+    this.setState({ workLength: this.state.minutes });
+    this.setDeadLine(this.state.workLength);
     const timeInterval = setInterval(this.timeLeft, 1000);
-    this.setState({ timeIntervalId: timeInterval })
+    this.setState({ timeIntervalId: timeInterval });
   }
 
-  setDeadLine = () => {
+  setDeadLine = (length) => {
     const currentTime = new Date();
     const deadline = new Date(new Date().getTime() + 
-    (this.state.minutes * 60 * 1000));
+    (length * 60 * 1000));
     this.setState({ 
       currentTime: currentTime,
       deadline: deadline,
@@ -36,12 +41,26 @@ class App extends Component {
     const secondsLeft = msLeft / 1000 % 60;
     if (msLeft === 0) {
       clearInterval(this.state.timeIntervalId);
-      const audio = this.audio;
-      audio.play();
+      this.audio.play();
+      this.setState({
+        status: this.state.status === 'work' ? 'break' : 'work',
+        tally: this.state.tally + 1,
+      })
     };
     this.setState({
       minutes: ('0' + minutesLeft).slice(-2),
       seconds: ('0' + secondsLeft).slice(-2),
+    });
+  }
+
+  resetClock = () => {
+    clearInterval(this.state.timeIntervalId);
+    this.setState({
+      currentTime: 0,
+      deadline: 0,
+      minutes: this.state.workLength,
+      seconds: '00',
+      timeIntervalId: 0,
     });
   }
 
@@ -53,17 +72,6 @@ class App extends Component {
     this.setState({ minutes: this.state.minutes - 1 });
   }
 
-  resetClock = () => {
-    clearInterval(this.state.timeIntervalId);
-    this.setState({
-      currentTime: 0,
-      deadline: 0,
-      minutes: 25,
-      seconds: '00',
-      timeIntervalId: 0,
-    });
-  }
-
   render() {
     return (
       <div className="App">
@@ -71,7 +79,8 @@ class App extends Component {
         <h3 className="title">Pomodoro Timer</h3>
         <Timer 
         minutes={this.state.minutes} 
-        seconds={this.state.seconds} 
+        seconds={this.state.seconds}
+        tally={this.state.tally} 
         incTime={this.incTime}
         decrTime={this.decrTime} />
         <audio 
