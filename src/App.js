@@ -7,7 +7,7 @@ import Actions from './components/Presentational/Actions';
 
 class App extends Component {
   state = {
-    breakLength: 0,
+    breakLength: 5,
     currentTime: 0,
     deadline: 0,
     minutes: 25,
@@ -18,11 +18,14 @@ class App extends Component {
     workLength: 0,
   }
 
+  start = () => {
+    const timeInterval = setInterval(this.timeLeft, 1000);
+    this.setState({ timeIntervalId: timeInterval });
+  }
+
   startClock = () => {
     this.setState({ workLength: this.state.minutes });
     this.setDeadLine(this.state.workLength);
-    const timeInterval = setInterval(this.timeLeft, 1000);
-    this.setState({ timeIntervalId: timeInterval });
   }
 
   setDeadLine = (length) => {
@@ -45,7 +48,17 @@ class App extends Component {
       this.setState({
         status: this.state.status === 'work' ? 'break' : 'work',
         tally: this.state.tally + 1,
-      })
+      }, () => {
+        if (this.state.status === 'work') {
+          this.setDeadLine(this.state.workLength);
+          const timeInterval = setInterval(this.timeLeft, 1000);
+          this.setState({ timeIntervalId: timeInterval });
+        } else {
+          this.setDeadLine(this.state.breakLength);
+          const timeInterval = setInterval(this.timeLeft, 1000);
+          this.setState({ timeIntervalId: timeInterval });
+        }
+      });
     };
     this.setState({
       minutes: ('0' + minutesLeft).slice(-2),
@@ -82,7 +95,8 @@ class App extends Component {
         seconds={this.state.seconds}
         tally={this.state.tally} 
         incTime={this.incTime}
-        decrTime={this.decrTime} />
+        decrTime={this.decrTime}
+        status={this.state.status} />
         <audio 
         src='https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_bell_timer_01.mp3' 
         volume='0.5'
@@ -100,4 +114,6 @@ export default App;
 /** Bugs to fix:
  * Decrement to -1
  * Add PropTypes and Default Props
+ * Pause functionality
+ * Abstract away start clock
  */

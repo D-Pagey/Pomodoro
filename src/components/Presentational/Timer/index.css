@@ -8,7 +8,6 @@
 }
 
 .main-clock {
-  background-color: whitesmoke;
   border-radius: 35px;
   font-size: 2.5rem;
   line-height: 4.25rem;
@@ -23,4 +22,12 @@
   color: silver;
   font-size: 40px;
   margin: 10px 3px;
+}
+
+.work {
+  background-color: whitesmoke;
+}
+
+.break {
+  background-color: rgb(121, 228, 255);
 }
