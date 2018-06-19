@@ -31,3 +31,9 @@
 .break {
   background-color: rgb(121, 228, 255);
 }
+
+.increment-container {
+  display: flex;
+  position: relative;
+  right: 28px;
+}

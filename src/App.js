@@ -26,6 +26,7 @@ class App extends Component {
   startClock = () => {
     this.setState({ workLength: this.state.minutes });
     this.setDeadLine(this.state.workLength);
+    this.start();
   }
 
   setDeadLine = (length) => {
@@ -39,7 +40,7 @@ class App extends Component {
   }
 
   timeLeft = () => {
-    const msLeft = Date.parse(this.state.deadline) - Date.parse(new Date);
+    const msLeft = Date.parse(this.state.deadline) - Date.parse(new Date());
     const minutesLeft = Math.floor(msLeft / 1000 / 60);
     const secondsLeft = msLeft / 1000 % 60;
     if (msLeft === 0) {
@@ -51,12 +52,10 @@ class App extends Component {
       }, () => {
         if (this.state.status === 'work') {
           this.setDeadLine(this.state.workLength);
-          const timeInterval = setInterval(this.timeLeft, 1000);
-          this.setState({ timeIntervalId: timeInterval });
+          this.start();
         } else {
           this.setDeadLine(this.state.breakLength);
-          const timeInterval = setInterval(this.timeLeft, 1000);
-          this.setState({ timeIntervalId: timeInterval });
+          this.start();
         }
       });
     };

@@ -10,8 +10,12 @@ export default function Timer({ minutes, seconds, incTime, decrTime, tally,
     <main className='clock-container'>
       <p className={`main-clock + ${status}`}>{`${minutes}:${seconds}`}</p>
       <Tally tally={tally}/>
-      <button onClick={incTime}><i className="material-icons btns">add_circle</i></button>
-      <button onClick={decrTime}><i className="material-icons btns">remove_circle</i></button>
+      <div className='increment-container'>
+        <button onClick={incTime}>
+        <i className="material-icons btns">add_circle</i></button>
+        <button onClick={decrTime}>
+        <i className="material-icons btns">remove_circle</i></button>
+      </div>
     </main>
   )
 }
