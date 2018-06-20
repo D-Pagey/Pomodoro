@@ -12,67 +12,72 @@ class App extends Component {
     deadline: 0,
     minutes: 25,
     seconds: '00',
-    status: 'work',
+    isBreak: false,
     tally: 0,
     timeIntervalId: 0,
     workLength: 0,
   }
 
-  start = () => {
-    const timeInterval = setInterval(this.timeLeft, 1000);
-    this.setState({ timeIntervalId: timeInterval });
-  }
+  audio = React.createRef()
 
-  startClock = () => {
-    this.setState({ workLength: this.state.minutes });
-    this.setDeadLine(this.state.workLength);
-    this.start();
+  componentWillUnmount() {
+    this.stop();
   }
+  
+  prepClock = () => {
+    const { workLength, minutes } = this.state;
 
-  setDeadLine = (length) => {
-    const currentTime = new Date();
-    const deadline = new Date(new Date().getTime() + 
-    (length * 60 * 1000));
     this.setState({ 
-      currentTime: currentTime,
-      deadline: deadline,
-     });
+      currentTime: new Date(),
+      deadline: this.getDeadline(workLength), 
+      workLength: minutes
+    }, this.start);
   }
+  
+  start = () => {
+    this.interval = setInterval(this.timeLeft, 1000);
+  }
+
+  stop = () => { 
+    clearInterval(this.interval);
+  }
+
+  getDeadline = (length) => new Date(new Date().getTime() + (length * 60 * 1000));
 
   timeLeft = () => {
-    const msLeft = Date.parse(this.state.deadline) - Date.parse(new Date());
+    const { isBreak, tally, deadline, workLength, breakLength } = this.state;
+    const msLeft = Date.parse(deadline) - Date.parse(new Date());
     const minutesLeft = Math.floor(msLeft / 1000 / 60);
     const secondsLeft = msLeft / 1000 % 60;
-    if (msLeft === 0) {
-      clearInterval(this.state.timeIntervalId);
-      this.audio.play();
-      this.setState({
-        status: this.state.status === 'work' ? 'break' : 'work',
-        tally: this.state.tally + 1,
-      }, () => {
-        if (this.state.status === 'work') {
-          this.setDeadLine(this.state.workLength);
-          this.start();
-        } else {
-          this.setDeadLine(this.state.breakLength);
-          this.start();
-        }
-      });
-    };
-    this.setState({
+    
+    let newState = {
       minutes: ('0' + minutesLeft).slice(-2),
       seconds: ('0' + secondsLeft).slice(-2),
-    });
+    }
+
+    if (msLeft === 0) {
+      this.stop();
+      this.audio.current.play();
+
+      newState = {
+        ...newState,
+        currentTime: new Date(),
+        isBreak: !isBreak,
+        tally: tally + 1, 
+        deadline: this.getDeadline(isBreak ? breakLength : workLength), 
+      };
+    }
+
+    this.setState(newState, this.start);
   }
 
   resetClock = () => {
-    clearInterval(this.state.timeIntervalId);
+    this.stop();
     this.setState({
       currentTime: 0,
       deadline: 0,
       minutes: this.state.workLength,
       seconds: '00',
-      timeIntervalId: 0,
     });
   }
 
@@ -88,21 +93,28 @@ class App extends Component {
     return (
       <div className="App">
         <Modal />
+
         <h3 className="title">Pomodoro Timer</h3>
+
         <Timer 
-        minutes={this.state.minutes} 
-        seconds={this.state.seconds}
-        tally={this.state.tally} 
-        incTime={this.incTime}
-        decrTime={this.decrTime}
-        status={this.state.status} />
+          minutes={this.state.minutes} 
+          seconds={this.state.seconds}
+          tally={this.state.tally} 
+          incTime={this.incTime}
+          decrTime={this.decrTime}
+          status={this.state.status} 
+        />
+
         <audio 
-        src='https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_bell_timer_01.mp3' 
-        volume='0.5'
-        ref={node => this.audio = node}/>
+          src='https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_bell_timer_01.mp3' 
+          volume='0.5'
+          ref={this.audio} 
+        />
+
         <Actions 
-        start={this.startClock}
-        reset={this.resetClock} />
+          start={this.prepClock}
+          reset={this.resetClock} 
+        />
       </div>
     );
   }
@@ -111,8 +123,14 @@ class App extends Component {
 export default App;
 
 /** Bugs to fix:
- * Decrement to -1
  * Add PropTypes and Default Props
+ * Decrement to -1
  * Pause functionality
- * Abstract away start clock
+ * Title
+ * ComponentWillUnmount -> clearInterval
+ * Getter functions. this.get.workLength
+ * deconstruct this.state at top
+ * Prettier config
+ * set up ES lint
+ * state isBreak: true/false
  */
