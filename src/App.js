@@ -4,6 +4,7 @@ import './App.css';
 import Modal from './components/Container/Modal';
 import Timer from './components/Presentational/Timer';
 import Actions from './components/Presentational/Actions';
+import Footer from './components/Presentational/Footer';
 
 class App extends Component {
   state = {
@@ -14,7 +15,6 @@ class App extends Component {
     seconds: '00',
     isBreak: false,
     tally: 0,
-    timeIntervalId: 0,
     workLength: 0,
   }
 
@@ -25,11 +25,11 @@ class App extends Component {
   }
   
   prepClock = () => {
-    const { workLength, minutes } = this.state;
+    const { minutes } = this.state;
 
     this.setState({ 
       currentTime: new Date(),
-      deadline: this.getDeadline(workLength), 
+      deadline: this.getDeadline(minutes), 
       workLength: minutes
     }, this.start);
   }
@@ -56,7 +56,6 @@ class App extends Component {
     }
 
     if (msLeft === 0) {
-      this.stop();
       this.audio.current.play();
 
       newState = {
@@ -68,28 +67,35 @@ class App extends Component {
       };
     }
 
-    this.setState(newState, this.start);
+    this.setState(newState);
   }
 
   resetClock = () => {
+    const { workLength } = this.state;
+
     this.stop();
     this.setState({
       currentTime: 0,
       deadline: 0,
-      minutes: this.state.workLength,
+      minutes: workLength,
       seconds: '00',
     });
   }
 
   incTime = () => {
-    this.setState({ minutes: this.state.minutes + 1 });
+    const { minutes } = this.state;
+    this.setState({ minutes: minutes + 1 });
   }
 
   decrTime = () => {
-    this.setState({ minutes: this.state.minutes - 1 });
+    const { minutes } = this.state;
+    this.setState({ minutes: minutes - 1 });
   }
 
   render() {
+
+    const { minutes, seconds, tally, isBreak } = this.state;
+
     return (
       <div className="App">
         <Modal />
@@ -97,12 +103,12 @@ class App extends Component {
         <h3 className="title">Pomodoro Timer</h3>
 
         <Timer 
-          minutes={this.state.minutes} 
-          seconds={this.state.seconds}
-          tally={this.state.tally} 
+          minutes={minutes} 
+          seconds={seconds}
+          tally={tally} 
           incTime={this.incTime}
           decrTime={this.decrTime}
-          status={this.state.status} 
+          status={isBreak ? 'break' : 'work'} 
         />
 
         <audio 
@@ -115,6 +121,8 @@ class App extends Component {
           start={this.prepClock}
           reset={this.resetClock} 
         />
+
+        <Footer />
       </div>
     );
   }
@@ -123,14 +131,12 @@ class App extends Component {
 export default App;
 
 /** Bugs to fix:
- * Add PropTypes and Default Props
  * Decrement to -1
  * Pause functionality
  * Title
- * ComponentWillUnmount -> clearInterval
  * Getter functions. this.get.workLength
- * deconstruct this.state at top
  * Prettier config
  * set up ES lint
- * state isBreak: true/false
+ * https://egghead.io/lessons/react-linting-react-jsx-with-eslint-in-es6
+ * https://github.com/dustinspecker/awesome-eslint
  */

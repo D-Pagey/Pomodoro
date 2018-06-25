@@ -1,7 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './index.css';
 import Tally from '../Tally';
+
+Timer.propTypes = {
+  minutes: PropTypes.number,
+  seconds: PropTypes.number,
+  incTime: PropTypes.func,
+  decrTime: PropTypes.func,
+  status: PropTypes.string
+}
+
+Timer.defaultProps = {
+  minutes: 25,
+  seconds: 0,
+  status: 'work'
+}
 
 export default function Timer({ minutes, seconds, incTime, decrTime, tally, 
   status }) {
@@ -19,5 +34,3 @@ export default function Timer({ minutes, seconds, incTime, decrTime, tally,
     </main>
   )
 }
-
-// Add PropTypes and Default Props

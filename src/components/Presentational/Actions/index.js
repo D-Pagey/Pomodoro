@@ -1,6 +1,12 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import "./index.css";
+
+Actions.propTypes = {
+  start: PropTypes.func,
+  reset: PropTypes.func
+}
 
 export default function Actions({ start, reset }) {
   return (
@@ -11,3 +17,5 @@ export default function Actions({ start, reset }) {
     </div>
   );
 }
+
+
