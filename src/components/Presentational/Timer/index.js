@@ -13,9 +13,9 @@ Timer.propTypes = {
 }
 
 Timer.defaultProps = {
-  minutes: 25,
-  seconds: 0,
-  status: 'work'
+minutes: 25,
+seconds: 0,
+status: 'work'
 }
 
 export default function Timer({ minutes, seconds, incTime, decrTime, tally, 
@@ -23,6 +23,7 @@ export default function Timer({ minutes, seconds, incTime, decrTime, tally,
     
   return (
     <main className='clock-container'>
+      <h3 className='subtitle'>{status === 'work' ? 'Work Time' : 'Break Time'}</h3>
       <p className={`main-clock + ${status}`}>{`${minutes}:${seconds}`}</p>
       <Tally tally={tally}/>
       <div className='increment-container'>

@@ -89,7 +89,12 @@ class App extends Component {
 
   decrTime = () => {
     const { minutes } = this.state;
-    this.setState({ minutes: minutes - 1 });
+
+    if (minutes > 1) {
+      this.setState({ minutes: minutes - 1 });
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -133,10 +138,7 @@ export default App;
 /** Bugs to fix:
  * Decrement to -1
  * Pause functionality
- * Title
  * Getter functions. this.get.workLength
- * Prettier config
- * set up ES lint
- * https://egghead.io/lessons/react-linting-react-jsx-with-eslint-in-es6
- * https://github.com/dustinspecker/awesome-eslint
+ * 1 min --> break --> 5 minute work?
+ * Tally % 4 then 20 minute break
  */
