@@ -8,7 +8,6 @@ import Footer from './components/Presentational/Footer';
 
 class App extends Component {
   state = {
-    breakLength: 5,
     currentTime: 0,
     deadline: 0,
     minutes: 25,
@@ -45,7 +44,7 @@ class App extends Component {
   getDeadline = (length) => new Date(new Date().getTime() + (length * 60 * 1000));
 
   timeLeft = () => {
-    const { isBreak, tally, deadline, workLength, breakLength } = this.state;
+    const { isBreak, tally, deadline, workLength } = this.state;
     const msLeft = Date.parse(deadline) - Date.parse(new Date());
     const minutesLeft = Math.floor(msLeft / 1000 / 60);
     const secondsLeft = msLeft / 1000 % 60;
@@ -54,16 +53,19 @@ class App extends Component {
       minutes: ('0' + minutesLeft).slice(-2),
       seconds: ('0' + secondsLeft).slice(-2),
     }
-
+    
     if (msLeft === 0) {
+      const newTally = (isBreak ? tally : tally + 1);
+      const breakLength = (newTally % 4 === 0 ? 20 : 5);
+    
       this.audio.current.play();
 
       newState = {
         ...newState,
         currentTime: new Date(),
         isBreak: !isBreak,
-        tally: tally + 1, 
-        deadline: this.getDeadline(isBreak ? breakLength : workLength), 
+        tally: newTally, 
+        deadline: this.getDeadline(!isBreak ? breakLength : workLength), 
       };
     }
 
@@ -136,9 +138,12 @@ class App extends Component {
 export default App;
 
 /** Bugs to fix:
- * Decrement to -1
  * Pause functionality
- * Getter functions. this.get.workLength
- * 1 min --> break --> 5 minute work?
- * Tally % 4 then 20 minute break
+ * No bell
  */
+
+ /** Pause Functionality
+  * Save deadline date object
+  * clearinterval
+  * modified start function (that doesn't create new deadline)
+  */

@@ -6,7 +6,6 @@ import Tally from '../Tally';
 
 Timer.propTypes = {
   minutes: PropTypes.number,
-  seconds: PropTypes.number,
   incTime: PropTypes.func,
   decrTime: PropTypes.func,
   status: PropTypes.string
