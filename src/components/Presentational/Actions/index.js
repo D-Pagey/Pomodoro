@@ -8,11 +8,14 @@ Actions.propTypes = {
   reset: PropTypes.func
 }
 
-export default function Actions({ start, reset }) {
+export default function Actions({ start, reset, pause, restart, isPaused }) {
   return (
     <div className="action-btns">
-      <button className="btn start" onClick={start}>Start</button>
-      <button className="btn pause" disabled>Pause</button>
+      <button 
+      className="btn start" 
+      onClick={isPaused ? restart : start}>
+      {isPaused ? 'Restart' : 'Start'}</button>
+      <button className="btn pause" onClick={pause}>Pause</button>
       <button className="btn reset" onClick={reset}>Reset</button>
     </div>
   );

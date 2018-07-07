@@ -23,13 +23,14 @@ also be cool to look into Local Storage to track how many "Pomodoros" I do.
 * Building a clock in React
 * Using and clearing setInterval
 * Linking the main clock, break clock and tally
+* Created a "Pause" function in a clock
 
 **Getting Started:**
- 1. Run: `npm install`
- 2. Run: `npm start`
+ 1. Run: `yarn`
+ 2. Run: `yarn start`
  3. Go to: `http://localhost:3000/`
 
 You can see a vanilla JS version of this 
 [Pomodoro](https://codepen.io/Pagey/pen/zRWYgw) project on CodePen.
 
-*This project was retired in June 2018.*
+*This project was retired in July 2018.*

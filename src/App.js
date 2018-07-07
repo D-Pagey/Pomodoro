@@ -13,6 +13,7 @@ class App extends Component {
     minutes: 25,
     seconds: '00',
     isBreak: false,
+    isPaused: false,
     tally: 0,
     workLength: 0,
   }
@@ -41,7 +42,8 @@ class App extends Component {
     clearInterval(this.interval);
   }
 
-  getDeadline = (length) => new Date(new Date().getTime() + (length * 60 * 1000));
+  getDeadline = (length, seconds = 0) => 
+    new Date(new Date().getTime() + (length * 60 * 1000) + (seconds * 1000));
 
   timeLeft = () => {
     const { isBreak, tally, deadline, workLength } = this.state;
@@ -72,6 +74,26 @@ class App extends Component {
     this.setState(newState);
   }
 
+  pause = () => {
+    this.stop();
+    this.setState({ 
+      currentTime: 0,
+      deadline: 0,
+      isPaused: true
+     })
+  }
+
+  restart = () => {
+    const { minutes, seconds } = this.state;
+
+    this.setState({
+      currentTime: new Date(),
+      deadline: this.getDeadline(minutes, seconds), 
+      isPaused: false,
+      minutes: minutes,
+    }, this.start)
+  }
+
   resetClock = () => {
     const { workLength } = this.state;
 
@@ -79,6 +101,7 @@ class App extends Component {
     this.setState({
       currentTime: 0,
       deadline: 0,
+      isPaused: false,
       minutes: workLength,
       seconds: '00',
     });
@@ -86,6 +109,7 @@ class App extends Component {
 
   incTime = () => {
     const { minutes } = this.state;
+    
     this.setState({ minutes: minutes + 1 });
   }
 
@@ -100,7 +124,6 @@ class App extends Component {
   }
 
   render() {
-
     const { minutes, seconds, tally, isBreak } = this.state;
 
     return (
@@ -119,7 +142,7 @@ class App extends Component {
         />
 
         <audio 
-          src='https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_bell_timer_01.mp3' 
+          src='https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_bell_timer_01.mp3'
           volume='0.5'
           ref={this.audio} 
         />
@@ -127,6 +150,9 @@ class App extends Component {
         <Actions 
           start={this.prepClock}
           reset={this.resetClock} 
+          pause={this.pause}
+          isPaused={this.state.isPaused}
+          restart={this.restart}
         />
 
         <Footer />
@@ -136,14 +162,3 @@ class App extends Component {
 }
 
 export default App;
-
-/** Bugs to fix:
- * Pause functionality
- * No bell
- */
-
- /** Pause Functionality
-  * Save deadline date object
-  * clearinterval
-  * modified start function (that doesn't create new deadline)
-  */
